@@ -1,0 +1,8 @@
+# IDE config
+.idea/
+
+# Virtualenv and packages
+env/
+
+# Compiled binaries
+*.pyc
