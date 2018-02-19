@@ -18,6 +18,7 @@ Working out the flow of what needs to happen for there to be an ECS Gitlab execu
 
 ### TODO:
 
+- how to get the container id or name from the task arn? need it to be able to exec into container
 - create minimal ecs cluster allowing access to docker daemon remotely
     - `DOCKER_OPTS="-H tcp://0.0.0.0:2376"`
     - should look at what needs to be done for TLS communication as well (https://docs.docker.com/engine/security/https/#daemon-modes)

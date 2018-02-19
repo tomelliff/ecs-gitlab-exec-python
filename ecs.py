@@ -85,9 +85,10 @@ def get_instance_ip(instance_id, private_ip=True):
         return instance.attributes.get('public_ip_address')
 
 
-def exec_remote_container(remote_url, command):
+def exec_remote_container(remote_url, container, command):
     client = docker.DockerClient(base_url=remote_url, version='auto')
-    return client.containers.exec_run(command)
+    container = client.containers.get(container)
+    return container.exec_run(command)
 
 
 def stop_task(cluster, task):
