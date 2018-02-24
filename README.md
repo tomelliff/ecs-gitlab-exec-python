@@ -19,6 +19,13 @@ Working out the flow of what needs to happen for there to be an ECS Gitlab execu
 ### TODO:
 
 - how to get the container id or name from the task arn? need it to be able to exec into container
+    - container_arn and task_arn have randomness but not linked to the container id on the host :(
+    - container name on host = `ecs-${task_definition_family}-${task_definition_revision}-${container_name}-${random_hex}`
+        - otherwise no linkage between container host/ID on host and ECS task ID or container ID
+        - if we only run a single instance of the task on an instance then we could look for the container using the above pattern
+            - could use distinct instance placement groups to do this
+            - limits that for every parallel execution of a job has to be on an extra instance or queued
+                - or could we be just generating task definitions on the fly for every run so it doesn't matter?
 - create minimal ecs cluster allowing access to docker daemon remotely
     - `DOCKER_OPTS="-H tcp://0.0.0.0:2376"`
     - should look at what needs to be done for TLS communication as well (https://docs.docker.com/engine/security/https/#daemon-modes)
